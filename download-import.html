@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>下载 Pawwise Daily 文章文件</title>
+<body style="font-family:Arial,sans-serif;padding:24px;line-height:1.7">
+<h2>正在准备文章导入文件…</h2>
+<p id="msg">请稍等，不需要复制代码。</p>
+<button id="go" style="font-size:18px;padding:12px 18px">下载13篇文章文件</button>
+<script>
+const url='https://raw.githubusercontent.com/1150995956-hue/pawwise-daily/main/pawwise-blogger-import.xml';
+async function download(){
+ const msg=document.getElementById('msg');
+ msg.textContent='正在准备下载…';
+ try{
+  const r=await fetch(url); if(!r.ok) throw new Error('fetch');
+  const blob=await r.blob();
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pawwise-blogger-import.xml';
+  document.body.appendChild(a); a.click(); a.remove();
+  msg.textContent='如果没有自动下载，请点上面的蓝色按钮。下载后不要打开文件。';
+ }catch(e){msg.textContent='自动下载未成功，请点击按钮重试。';}
+}
+document.getElementById('go').addEventListener('click',download);
+download();
+</script></body></html>
