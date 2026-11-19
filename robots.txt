@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://1150995956-hue.github.io/pawwise-daily/sitemap.xml
